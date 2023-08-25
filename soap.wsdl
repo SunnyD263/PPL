@@ -1,0 +1,3090 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://myapi.ppl.cz/v1" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="MyApiService" targetNamespace="http://myapi.ppl.cz/v1">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://myapi.ppl.cz/v1">
+<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+<xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+<xs:import namespace="http://schemas.datacontract.org/2004/07/Elinkx.EpsNet.API.MyAPI.Model.AccessPoint"/>
+<xs:element name="CreatePackages">
+<xs:complexType>
+...
+</xs:complexType>
+</xs:element>
+<xs:complexType name="AuthenticationData">
+<xs:sequence>
+<xs:element minOccurs="0" name="AuthToken" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CustId" type="xs:int"/>
+<xs:element minOccurs="0" name="PartnerId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Password" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SubjectId" type="xs:int"/>
+<xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AuthenticationData" nillable="true" type="tns:AuthenticationData"/>
+<xs:complexType name="ArrayOfMyApiPackageIn">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageIn" nillable="true" type="tns:MyApiPackageIn"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageIn" nillable="true" type="tns:ArrayOfMyApiPackageIn"/>
+<xs:complexType name="MyApiPackageIn">
+<xs:sequence>
+<xs:element name="PackNumber" nillable="true" type="xs:string"/>
+<xs:element name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepoCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Sender" nillable="true" type="tns:MyApiPackageInSender"/>
+<xs:element name="Recipient" nillable="true" type="tns:MyApiPackageInRecipient"/>
+<xs:element minOccurs="0" name="SpecDelivery" nillable="true" type="tns:SpecDeliveryInfo"/>
+<xs:element minOccurs="0" name="PaymentInfo" nillable="true" type="tns:PaymentInfo"/>
+<xs:element minOccurs="0" name="PackagesExtNums" nillable="true" type="tns:ArrayOfMyApiPackageExtNum"/>
+<xs:element minOccurs="0" name="PackageServices" nillable="true" type="tns:ArrayOfMyApiPackageInServices"/>
+<xs:element minOccurs="0" name="Flags" nillable="true" type="tns:ArrayOfMyApiFlag"/>
+<xs:element minOccurs="0" name="PackageSet" nillable="true" type="tns:MyApiPackageSet"/>
+<xs:element minOccurs="0" name="WeightedPackageInfo" nillable="true" type="tns:WeightedPackageInfoIn"/>
+<xs:element minOccurs="0" name="DocumentsBack" nillable="true" type="tns:DocumentsBackInfo"/>
+<xs:element minOccurs="0" name="AddressesForServices" nillable="true" type="tns:ArrayOfAddressForService"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageIn" nillable="true" type="tns:MyApiPackageIn"/>
+<xs:complexType name="MyApiPackageInSender">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageInSender" nillable="true" type="tns:MyApiPackageInSender"/>
+<xs:complexType name="MyApiPackageInRecipient">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageInRecipient" nillable="true" type="tns:MyApiPackageInRecipient"/>
+<xs:complexType name="SpecDeliveryInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="ParcelShopCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SpecDelivDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SpecDelivTimeFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SpecDelivTimeTo" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SpecTakeDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SpecTakeTimeFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SpecTakeTimeTo" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="SpecDeliveryInfo" nillable="true" type="tns:SpecDeliveryInfo"/>
+<xs:complexType name="PaymentInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="BankAccount" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CodCurrency" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CodPrice" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CodVarSym" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IBAN" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="InsurCurrency" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="InsurPrice" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="SpecSymbol" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Swift" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PaymentInfo" nillable="true" type="tns:PaymentInfo"/>
+<xs:complexType name="ArrayOfMyApiPackageExtNum">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageExtNum" nillable="true" type="tns:MyApiPackageExtNum"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageExtNum" nillable="true" type="tns:ArrayOfMyApiPackageExtNum"/>
+<xs:complexType name="MyApiPackageExtNum">
+<xs:sequence>
+<xs:element name="Code" nillable="true" type="xs:string"/>
+<xs:element name="ExtNumber" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageExtNum" nillable="true" type="tns:MyApiPackageExtNum"/>
+<xs:complexType name="ArrayOfMyApiPackageInServices">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageInServices" nillable="true" type="tns:MyApiPackageInServices"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageInServices" nillable="true" type="tns:ArrayOfMyApiPackageInServices"/>
+<xs:complexType name="MyApiPackageInServices">
+<xs:sequence>
+<xs:element name="SvcCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageInServices" nillable="true" type="tns:MyApiPackageInServices"/>
+<xs:complexType name="ArrayOfMyApiFlag">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiFlag" nillable="true" type="tns:MyApiFlag"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiFlag" nillable="true" type="tns:ArrayOfMyApiFlag"/>
+<xs:complexType name="MyApiFlag">
+<xs:sequence>
+<xs:element name="Code" nillable="true" type="xs:string"/>
+<xs:element name="Value" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiFlag" nillable="true" type="tns:MyApiFlag"/>
+<xs:complexType name="MyApiPackageSet">
+<xs:sequence>
+<xs:element minOccurs="0" name="MasterPackNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackageInSetNr" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="PackagesInSet" nillable="true" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageSet" nillable="true" type="tns:MyApiPackageSet"/>
+<xs:complexType name="WeightedPackageInfoIn">
+<xs:sequence>
+<xs:element name="Weight" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="Routes" nillable="true" type="tns:ArrayOfRoute"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="WeightedPackageInfoIn" nillable="true" type="tns:WeightedPackageInfoIn"/>
+<xs:complexType name="ArrayOfRoute">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Route" nillable="true" type="tns:Route"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfRoute" nillable="true" type="tns:ArrayOfRoute"/>
+<xs:complexType name="Route">
+<xs:sequence>
+<xs:element name="RouteType" nillable="true" type="xs:string"/>
+<xs:element name="RouteCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Route" nillable="true" type="tns:Route"/>
+<xs:complexType name="DocumentsBackInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="Recipient" nillable="true" type="tns:DocumentsBackRecipient"/>
+<xs:element name="PackNumber" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="DocumentsBackInfo" nillable="true" type="tns:DocumentsBackInfo"/>
+<xs:complexType name="DocumentsBackRecipient">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="DocumentsBackRecipient" nillable="true" type="tns:DocumentsBackRecipient"/>
+<xs:complexType name="ArrayOfAddressForService">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="AddressForService" nillable="true" type="tns:AddressForService"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfAddressForService" nillable="true" type="tns:ArrayOfAddressForService"/>
+<xs:complexType name="AddressForService">
+<xs:sequence>
+<xs:element name="ServiceAddressType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BackPackNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackNrRetConnect" nillable="true" type="xs:string"/>
+<xs:element name="Recipient" nillable="true" type="tns:ServiceAddressRecipient"/>
+<xs:element minOccurs="0" name="Flags" nillable="true" type="tns:ArrayOfMyApiFlag"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AddressForService" nillable="true" type="tns:AddressForService"/>
+<xs:complexType name="ServiceAddressRecipient">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ServiceAddressRecipient" nillable="true" type="tns:ServiceAddressRecipient"/>
+<xs:complexType name="ReturnChannelSettings">
+<xs:sequence>
+<xs:element minOccurs="0" name="Type" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Format" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Address" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ReturnChannelSettings" nillable="true" type="tns:ReturnChannelSettings"/>
+<xs:element name="CreatePackagesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CreatePackagesResult" nillable="true" type="tns:CreatePackagesResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CreatePackagesResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CreatePackagesResult" nillable="true" type="tns:CreatePackagesResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfItemResultpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfItemResult" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfItemResult"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfItemResultpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfItemResultpewOaM6d"/>
+<xs:complexType name="MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element minOccurs="0" name="AuthToken" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiResultBaseVoid" nillable="true" type="tns:MyApiResultBaseVoid"/>
+<xs:complexType name="ArrayOfItemResult">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="ItemResult" nillable="true" type="tns:ItemResult"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfItemResult" nillable="true" type="tns:ArrayOfItemResult"/>
+<xs:complexType name="ItemResult">
+<xs:sequence>
+<xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ItemKey" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ItemResult" nillable="true" type="tns:ItemResult"/>
+<xs:complexType name="GeneralFault">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiFault">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GeneralFault" nillable="true" type="tns:GeneralFault"/>
+<xs:complexType name="MyApiFault">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="MyApiFault" nillable="true" type="tns:MyApiFault"/>
+<xs:complexType name="AuthenticationFault">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiFault">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="AuthenticationFault" nillable="true" type="tns:AuthenticationFault"/>
+<xs:complexType name="ValidationFault">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiFault">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="ValidationFault" nillable="true" type="tns:ValidationFault"/>
+<xs:element name="CreatePackageLabel">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="IntegrId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="1" name="Packages" nillable="true" type="tns:ArrayOfMyApiPackageIn2"/>
+<xs:element minOccurs="1" name="ReturnChannel" nillable="true" type="tns:LabelReturnChannelSettings"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ArrayOfMyApiPackageIn2">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageIn2" nillable="true" type="tns:MyApiPackageIn2"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageIn2" nillable="true" type="tns:ArrayOfMyApiPackageIn2"/>
+<xs:complexType name="MyApiPackageIn2">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiPackageIn">
+<xs:sequence>
+<xs:element name="UniqueReferenceId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiPackageIn2" nillable="true" type="tns:MyApiPackageIn2"/>
+<xs:complexType name="LabelReturnChannelSettings">
+<xs:sequence>
+<xs:element minOccurs="0" name="Type" nillable="true" type="tns:ReturnChannel"/>
+<xs:element name="Format" type="tns:LabelFormat"/>
+<xs:element minOccurs="0" name="FullLabel" nillable="true" type="tns:FullLabel"/>
+<xs:element minOccurs="0" name="Address" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Dpi" nillable="true" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="LabelReturnChannelSettings" nillable="true" type="tns:LabelReturnChannelSettings"/>
+<xs:simpleType name="ReturnChannel">
+<xs:restriction base="xs:string">
+<xs:enumeration value="Email">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Ftp">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="DirectResponse">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="EM">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="FT">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="XM">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="None">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="ReturnChannel" nillable="true" type="tns:ReturnChannel"/>
+<xs:simpleType name="LabelFormat">
+<xs:restriction base="xs:string">
+<xs:enumeration value="Jpeg">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JP">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Pdf"/>
+<xs:enumeration value="PD">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Zpl">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ZP">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Epl">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="EP">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="LabelFormat" nillable="true" type="tns:LabelFormat"/>
+<xs:complexType name="FullLabel">
+<xs:sequence>
+<xs:element name="FullLabelUrl" type="xs:boolean"/>
+<xs:element minOccurs="0" name="PageSize" type="tns:PdfPageSize"/>
+<xs:element minOccurs="0" name="Position" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FullLabel" nillable="true" type="tns:FullLabel"/>
+<xs:simpleType name="PdfPageSize">
+<xs:restriction base="xs:string">
+<xs:enumeration value="Default"/>
+<xs:enumeration value="A4"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="PdfPageSize" nillable="true" type="tns:PdfPageSize"/>
+<xs:element name="CreatePackageLabelResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CreatePackageLabelResult" nillable="true" type="tns:CreatePackagesLabelsResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CreatePackagesLabelsResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfCreatePackagesLabelsResultDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CreatePackagesLabelsResult" nillable="true" type="tns:CreatePackagesLabelsResult"/>
+<xs:complexType name="MyApiResultBaseOfCreatePackagesLabelsResultDatapewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="CreatePackagesLabelsResultData" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:CreatePackagesLabelsResultData"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfCreatePackagesLabelsResultDatapewOaM6d" nillable="true" type="tns:MyApiResultBaseOfCreatePackagesLabelsResultDatapewOaM6d"/>
+<xs:complexType name="CreatePackagesLabelsResultData">
+<xs:sequence>
+<xs:element minOccurs="0" name="RequestId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CreatePackagesLabelsResultData" nillable="true" type="tns:CreatePackagesLabelsResultData"/>
+<xs:element name="GetCplResult">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="RequestId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetCplResultResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetCplResultResult" nillable="true" type="tns:CreatePackageLabelRequestResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CreatePackageLabelRequestResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfCreatePackageLabelRequestResultDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CreatePackageLabelRequestResult" nillable="true" type="tns:CreatePackageLabelRequestResult"/>
+<xs:complexType name="MyApiResultBaseOfCreatePackageLabelRequestResultDatapewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="CreatePackageLabelRequestResultData" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:CreatePackageLabelRequestResultData"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfCreatePackageLabelRequestResultDatapewOaM6d" nillable="true" type="tns:MyApiResultBaseOfCreatePackageLabelRequestResultDatapewOaM6d"/>
+<xs:complexType name="CreatePackageLabelRequestResultData">
+<xs:sequence>
+<xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfCreatePackageLabelResultItemData"/>
+<xs:element minOccurs="0" name="FullLabel" nillable="true" type="tns:FullLabelResultData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CreatePackageLabelRequestResultData" nillable="true" type="tns:CreatePackageLabelRequestResultData"/>
+<xs:complexType name="ArrayOfCreatePackageLabelResultItemData">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="CreatePackageLabelResultItemData" nillable="true" type="tns:CreatePackageLabelResultItemData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfCreatePackageLabelResultItemData" nillable="true" type="tns:ArrayOfCreatePackageLabelResultItemData"/>
+<xs:complexType name="CreatePackageLabelResultItemData">
+<xs:sequence>
+<xs:element minOccurs="0" name="UniqueReferenceId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="State" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LabelUrl" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Label" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DocumentBackLabelUrl" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DocumentBackLabel" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BackPackLabelUrl" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BackPackLabel" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CreatePackageLabelResultItemData" nillable="true" type="tns:CreatePackageLabelResultItemData"/>
+<xs:complexType name="FullLabelResultData">
+<xs:sequence>
+<xs:element minOccurs="0" name="State" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="LabelUrl" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Label" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="FullLabelResultData" nillable="true" type="tns:FullLabelResultData"/>
+<xs:element name="GetOrders">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:OrdersFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="OrdersFilter">
+<xs:sequence>
+<xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CustRefs" nillable="true" type="q1:ArrayOfstring"/>
+<xs:element minOccurs="0" name="DateFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="DateTo" nillable="true" type="xs:dateTime"/>
+<xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="OrderIds" nillable="true" type="q2:ArrayOfint"/>
+<xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="OrderNumbers" nillable="true" type="q3:ArrayOfstring"/>
+<xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="OrderRefs" nillable="true" type="q4:ArrayOfstring"/>
+<xs:element minOccurs="0" name="OrderState" nillable="true" type="tns:OrderState"/>
+<xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PackNumbers" nillable="true" type="q5:ArrayOfstring"/>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SendDate" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="OrdersFilter" nillable="true" type="tns:OrdersFilter"/>
+<xs:simpleType name="OrderState">
+<xs:annotation>
+<xs:appinfo>
+<ActualType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="long" Namespace="http://www.w3.org/2001/XMLSchema"/>
+</xs:appinfo>
+</xs:annotation>
+<xs:list>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="None">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Created">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="PickedUp">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="NotPickedUp">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Canceled">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:list>
+</xs:simpleType>
+<xs:element name="OrderState" nillable="true" type="tns:OrderState"/>
+<xs:element name="GetOrdersResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetOrdersResult" nillable="true" type="tns:GetOrdersResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetOrdersResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiOrderOutpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetOrdersResult" nillable="true" type="tns:GetOrdersResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiOrderOutpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiOrderOut" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiOrderOut"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiOrderOutpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiOrderOutpewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiOrderOut">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiOrderOut" nillable="true" type="tns:MyApiOrderOut"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiOrderOut" nillable="true" type="tns:ArrayOfMyApiOrderOut"/>
+<xs:complexType name="MyApiOrderOut">
+<xs:sequence>
+<xs:element minOccurs="0" name="CountPack" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="CustRef" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DelivDateTime" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrderNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrderRefId" nillable="true" type="xs:string"/>
+<xs:element name="OrderState" type="tns:OrderState"/>
+<xs:element minOccurs="0" name="OrderStateDetail" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrderStateDetailName" nillable="true" type="xs:string"/>
+<xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PackNumbers" nillable="true" type="q6:ArrayOfstring"/>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="RealCountPack" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="RealSendDate" nillable="true" type="xs:dateTime"/>
+<xs:element name="Recipient" nillable="true" type="tns:MyApiPackageInRecipient"/>
+<xs:element minOccurs="0" name="SendDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Sender" nillable="true" type="tns:MyApiPackageInSender"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiOrderOut" nillable="true" type="tns:MyApiOrderOut"/>
+<xs:element name="GetPackages">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:PackagesFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="PackagesFilter">
+<xs:sequence>
+<xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CustRefs" nillable="true" type="q7:ArrayOfstring"/>
+<xs:element minOccurs="0" name="DateFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="DateTo" nillable="true" type="xs:dateTime"/>
+<xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="InvNumbers" nillable="true" type="q8:ArrayOfstring"/>
+<xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="PackNumbers" nillable="true" type="q9:ArrayOfstring"/>
+<xs:element minOccurs="0" name="PackageStates" type="tns:PackageState"/>
+<xs:element minOccurs="0" name="PackagesInSet" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="StatusLang" nillable="true" type="xs:string"/>
+<xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="VariableSymbolsCOD" nillable="true" type="q10:ArrayOfstring"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PackagesFilter" nillable="true" type="tns:PackagesFilter"/>
+<xs:simpleType name="PackageState">
+<xs:annotation>
+<xs:appinfo>
+<ActualType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="long" Namespace="http://www.w3.org/2001/XMLSchema"/>
+</xs:appinfo>
+</xs:annotation>
+<xs:list>
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="None">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">0</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="PickedUpFromSender">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="DeliveredToParcelShop">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="OutForDelivery">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Delivered">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="NotDelivered">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">16</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CodPaidDate">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">32</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BackToSender">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">64</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Rejected">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">128</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="DataShipment">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">256</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:list>
+</xs:simpleType>
+<xs:element name="PackageState" nillable="true" type="tns:PackageState"/>
+<xs:element name="GetPackagesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetPackagesResult" nillable="true" type="tns:GetPackagesResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetPackagesResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiPackageOutpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetPackagesResult" nillable="true" type="tns:GetPackagesResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiPackageOutpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiPackageOut" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiPackageOut"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiPackageOutpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiPackageOutpewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiPackageOut">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageOut" nillable="true" type="tns:MyApiPackageOut"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageOut" nillable="true" type="tns:ArrayOfMyApiPackageOut"/>
+<xs:complexType name="MyApiPackageOut">
+<xs:sequence>
+<xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Elinkx.EpsNet.API.MyAPI.Model.AccessPoint" minOccurs="0" name="AccessPointType" nillable="true" type="q11:AccessPointType"/>
+<xs:element minOccurs="0" name="BackDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="BackPackNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BackPackNumberActive" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="BackedDoc" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DelivDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="DelivPerson" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DeliveryToKtm" type="xs:boolean"/>
+<xs:element minOccurs="0" name="DepInCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepInName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepOutCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepOutName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DepoCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="HubDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="LoadDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="NotDelivDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OutDepDate" nillable="true" type="xs:dateTime"/>
+<xs:element name="PackNumber" nillable="true" type="xs:string"/>
+<xs:element name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackageSet" nillable="true" type="tns:MyApiPackageSet"/>
+<xs:element name="PackageStatuses" nillable="true" type="tns:ArrayOfMyApiPackageOutStatus"/>
+<xs:element minOccurs="0" name="PackagesExtNums" nillable="true" type="tns:ArrayOfMyApiPackageExtNum"/>
+<xs:element minOccurs="0" name="PackagesServices" nillable="true" type="tns:ArrayOfMyApiPackageOutService"/>
+<xs:element minOccurs="0" name="PaymentInfo" nillable="true" type="tns:PaymentInfoOut"/>
+<xs:element name="Recipient" nillable="true" type="tns:MyApiPackageInRecipient"/>
+<xs:element minOccurs="0" name="Sender" nillable="true" type="tns:MyApiPackageInSender"/>
+<xs:element minOccurs="0" name="SpecDelivery" nillable="true" type="tns:SpecDeliveryInfo"/>
+<xs:element minOccurs="0" name="TakeDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Weight" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="WeightedDate" nillable="true" type="xs:dateTime"/>
+<xs:element name="Flags" nillable="true" type="tns:ArrayOfMyApiFlag"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageOut" nillable="true" type="tns:MyApiPackageOut"/>
+<xs:complexType name="ArrayOfMyApiPackageOutStatus">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageOutStatus" nillable="true" type="tns:MyApiPackageOutStatus"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageOutStatus" nillable="true" type="tns:ArrayOfMyApiPackageOutStatus"/>
+<xs:complexType name="MyApiPackageOutStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="DelivPerson" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="StaID" type="xs:int"/>
+<xs:element minOccurs="0" name="StatusDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="StatusName" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageOutStatus" nillable="true" type="tns:MyApiPackageOutStatus"/>
+<xs:complexType name="ArrayOfMyApiPackageOutService">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackageOutService" nillable="true" type="tns:MyApiPackageOutService"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackageOutService" nillable="true" type="tns:ArrayOfMyApiPackageOutService"/>
+<xs:complexType name="MyApiPackageOutService">
+<xs:sequence>
+<xs:element minOccurs="0" name="AdditionalParameters" nillable="true" type="tns:ArrayOfAdditionalParameter"/>
+<xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="PriceCurrency" nillable="true" type="xs:string"/>
+<xs:element name="SvcCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageOutService" nillable="true" type="tns:MyApiPackageOutService"/>
+<xs:complexType name="ArrayOfAdditionalParameter">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="AdditionalParameter" nillable="true" type="tns:AdditionalParameter"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfAdditionalParameter" nillable="true" type="tns:ArrayOfAdditionalParameter"/>
+<xs:complexType name="AdditionalParameter">
+<xs:sequence>
+<xs:element minOccurs="0" name="Reference" nillable="true" type="xs:string"/>
+<xs:element name="Type" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AdditionalParameter" nillable="true" type="tns:AdditionalParameter"/>
+<xs:complexType name="PaymentInfoOut">
+<xs:sequence>
+<xs:element minOccurs="0" name="BankAccount" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CanPayByCard" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="CodBankStatementDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="CodCurrency" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CodPaidDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="CodPaymentAccDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="CodPrice" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CodVarSym" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="IBAN" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="InvDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="InvNumber" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PaidByCard" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="SpecSymbol" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Swift" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PaymentInfoOut" nillable="true" type="tns:PaymentInfoOut"/>
+<xs:element name="Login">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="LoginResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="LoginResult" nillable="true" type="tns:LoginResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="LoginResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="LoginResult" nillable="true" type="tns:LoginResult"/>
+<xs:element name="CreateOrders">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Orders" nillable="true" type="tns:ArrayOfMyApiOrderIn"/>
+<xs:element minOccurs="1" name="ReturnChannel" nillable="true" type="tns:ReturnChannelSettings"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ArrayOfMyApiOrderIn">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiOrderIn" nillable="true" type="tns:MyApiOrderIn"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiOrderIn" nillable="true" type="tns:ArrayOfMyApiOrderIn"/>
+<xs:complexType name="MyApiOrderIn">
+<xs:sequence>
+<xs:element minOccurs="0" name="OrdRefId" nillable="true" type="xs:string"/>
+<xs:element name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CustRef" nillable="true" type="xs:string"/>
+<xs:element name="CountPack" type="xs:int"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SendDate" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SendTimeFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SendTimeTo" nillable="true" type="xs:dateTime"/>
+<xs:element name="Sender" nillable="true" type="tns:MyApiOrderInSender"/>
+<xs:element name="Recipient" nillable="true" type="tns:MyApiOrderInRecipient"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiOrderIn" nillable="true" type="tns:MyApiOrderIn"/>
+<xs:complexType name="MyApiOrderInSender">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiOrderInSender" nillable="true" type="tns:MyApiOrderInSender"/>
+<xs:complexType name="MyApiOrderInRecipient">
+<xs:sequence>
+<xs:element name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiOrderInRecipient" nillable="true" type="tns:MyApiOrderInRecipient"/>
+<xs:element name="CreateOrdersResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CreateOrdersResult" nillable="true" type="tns:CreateOrdersResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CreateOrdersResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CreateOrdersResult" nillable="true" type="tns:CreateOrdersResult"/>
+<xs:element name="CreatePickupOrders">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Orders" nillable="true" type="tns:ArrayOfMyApiPickupOrderIn"/>
+<xs:element minOccurs="1" name="ReturnChannel" nillable="true" type="tns:ReturnChannelSettings"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ArrayOfMyApiPickupOrderIn">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPickupOrderIn" nillable="true" type="tns:MyApiPickupOrderIn"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPickupOrderIn" nillable="true" type="tns:ArrayOfMyApiPickupOrderIn"/>
+<xs:complexType name="MyApiPickupOrderIn">
+<xs:sequence>
+<xs:element minOccurs="0" name="OrdRefId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CustRef" nillable="true" type="xs:string"/>
+<xs:element name="CountPack" type="xs:int"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SendDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SendTimeFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SendTimeTo" nillable="true" type="xs:dateTime"/>
+<xs:element name="Sender" nillable="true" type="tns:MyApiOrderInSender"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPickupOrderIn" nillable="true" type="tns:MyApiPickupOrderIn"/>
+<xs:element name="CreatePickupOrdersResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CreatePickupOrdersResult" nillable="true" type="tns:CreatePickupOrdersResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CreatePickupOrdersResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CreatePickupOrdersResult" nillable="true" type="tns:CreatePickupOrdersResult"/>
+<xs:element name="GetCitiesRouting">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:CitiesRoutingFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CitiesRoutingFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DateFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="EveningDelivery" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="MorningDelivery" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Post" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Rejected" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="SaturdayDelivery" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Street" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CitiesRoutingFilter" nillable="true" type="tns:CitiesRoutingFilter"/>
+<xs:element name="GetCitiesRoutingResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetCitiesRoutingResult" nillable="true" type="tns:GetCitiesRoutingResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetCitiesRoutingResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiCityRoutingpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetCitiesRoutingResult" nillable="true" type="tns:GetCitiesRoutingResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiCityRoutingpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiCityRouting" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiCityRouting"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiCityRoutingpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiCityRoutingpewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiCityRouting">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCityRouting" nillable="true" type="tns:MyApiCityRouting"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCityRouting" nillable="true" type="tns:ArrayOfMyApiCityRouting"/>
+<xs:complexType name="MyApiCityRouting">
+<xs:sequence>
+<xs:element minOccurs="0" name="Changed" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Created" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="DepoCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Highlighted" type="xs:boolean"/>
+<xs:element minOccurs="0" name="PackProductName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Post" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Region" nillable="true" type="xs:string"/>
+<xs:element name="Reject" type="xs:boolean"/>
+<xs:element name="RouteCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="SecondWave" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfMyApiCityRouteSvc"/>
+<xs:element minOccurs="0" name="Street" nillable="true" type="xs:string"/>
+<xs:element name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCityRouting" nillable="true" type="tns:MyApiCityRouting"/>
+<xs:complexType name="ArrayOfMyApiCityRouteSvc">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCityRouteSvc" nillable="true" type="tns:MyApiCityRouteSvc"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCityRouteSvc" nillable="true" type="tns:ArrayOfMyApiCityRouteSvc"/>
+<xs:complexType name="MyApiCityRouteSvc">
+<xs:sequence>
+<xs:element name="Code" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Value" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCityRouteSvc" nillable="true" type="tns:MyApiCityRouteSvc"/>
+<xs:element name="GetParcelShops">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:ParcelShopFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ParcelShopFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="AccessPointType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ActiveCardPayment" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ActiveCashPayment" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+<xs:element name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:double"/>
+<xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:double"/>
+<xs:element minOccurs="0" name="PickupEnabled" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Radius" nillable="true" type="xs:int"/>
+<xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Sizes" nillable="true" type="q12:ArrayOfstring"/>
+<xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ParcelShopFilter" nillable="true" type="tns:ParcelShopFilter"/>
+<xs:element name="GetParcelShopsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetParcelShopsResult" nillable="true" type="tns:GetParcelShopsResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetParcelShopsResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiParcelShoppewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetParcelShopsResult" nillable="true" type="tns:GetParcelShopsResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiParcelShoppewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiParcelShop" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiParcelShop"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiParcelShoppewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiParcelShoppewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiParcelShop">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiParcelShop" nillable="true" type="tns:MyApiParcelShop"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiParcelShop" nillable="true" type="tns:ArrayOfMyApiParcelShop"/>
+<xs:complexType name="MyApiParcelShop">
+<xs:sequence>
+<xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Elinkx.EpsNet.API.MyAPI.Model.AccessPoint" minOccurs="0" name="AccessPointType" nillable="true" type="q13:AccessPointType"/>
+<xs:element minOccurs="0" name="ActiveCardPayment" type="xs:boolean"/>
+<xs:element minOccurs="0" name="ActiveCashPayment" type="xs:boolean"/>
+<xs:element minOccurs="0" name="CapacitySettings" nillable="true" type="tns:ArrayOfMyApiCapacitySetting"/>
+<xs:element minOccurs="0" name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DimensionForced" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="GPSLocation" nillable="true" type="tns:MyApiCoordinates"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrgId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OrgVatId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ParcelShopCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ParcelShopNote" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PickupEnabled" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Position" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="QrCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Street" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="TribalServicePoint" type="xs:boolean"/>
+<xs:element minOccurs="0" name="WorkHours" nillable="true" type="tns:ArrayOfMyApiKTMWorkHour"/>
+<xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiParcelShop" nillable="true" type="tns:MyApiParcelShop"/>
+<xs:complexType name="ArrayOfMyApiCapacitySetting">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCapacitySetting" nillable="true" type="tns:MyApiCapacitySetting"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCapacitySetting" nillable="true" type="tns:ArrayOfMyApiCapacitySetting"/>
+<xs:complexType name="MyApiCapacitySetting">
+<xs:sequence>
+<xs:element minOccurs="0" name="Capacity" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Height" type="xs:int"/>
+<xs:element minOccurs="0" name="Length" type="xs:int"/>
+<xs:element minOccurs="0" name="Size" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Width" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCapacitySetting" nillable="true" type="tns:MyApiCapacitySetting"/>
+<xs:complexType name="MyApiCoordinates">
+<xs:sequence>
+<xs:element minOccurs="0" name="GPS_E_D" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="GPS_E_M" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="GPS_E_S" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="GPS_N_D" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="GPS_N_M" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="GPS_N_S" nillable="true" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCoordinates" nillable="true" type="tns:MyApiCoordinates"/>
+<xs:complexType name="ArrayOfMyApiKTMWorkHour">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiKTMWorkHour" nillable="true" type="tns:MyApiKTMWorkHour"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiKTMWorkHour" nillable="true" type="tns:ArrayOfMyApiKTMWorkHour"/>
+<xs:complexType name="MyApiKTMWorkHour">
+<xs:sequence>
+<xs:element name="Day" type="xs:unsignedByte"/>
+<xs:element name="From" nillable="true" type="xs:string"/>
+<xs:element name="To" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiKTMWorkHour" nillable="true" type="tns:MyApiKTMWorkHour"/>
+<xs:element name="Version">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="VersionResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="VersionResult" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PartnerSaveStatuses">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Request" nillable="true" type="tns:ArrayOfStatusData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ArrayOfStatusData">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="StatusData" nillable="true" type="tns:StatusData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfStatusData" nillable="true" type="tns:ArrayOfStatusData"/>
+<xs:complexType name="StatusData">
+<xs:sequence>
+<xs:element minOccurs="0" name="CODValue" nillable="true" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CustID" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="DelivPerson" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="GpsE" nillable="true" type="xs:float"/>
+<xs:element minOccurs="0" name="GpsN" nillable="true" type="xs:float"/>
+<xs:element minOccurs="0" name="ID" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackageID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackageIDCus" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PartnerID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Status" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="StatusCity" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="StatusCountry" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="StatusDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="StatusStreet" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="StatusZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="StatusData" nillable="true" type="tns:StatusData"/>
+<xs:element name="PartnerSaveStatusesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="PartnerSaveStatusesResult" nillable="true" type="tns:PartnerSaveStatusesResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="PartnerSaveStatusesResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:PartnerResultOfArrayOfPartnerItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="PartnerSaveStatusesResult" nillable="true" type="tns:PartnerSaveStatusesResult"/>
+<xs:complexType name="PartnerResultOfArrayOfPartnerItemResultpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="PartnerResultOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfPartnerItemResult" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfPartnerItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="PartnerResultOfArrayOfPartnerItemResultpewOaM6d" nillable="true" type="tns:PartnerResultOfArrayOfPartnerItemResultpewOaM6d"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfPartnerItemResultpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfPartnerItemResult" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfPartnerItemResult"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfPartnerItemResultpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfPartnerItemResultpewOaM6d"/>
+<xs:complexType name="ArrayOfPartnerItemResult">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="PartnerItemResult" nillable="true" type="tns:PartnerItemResult"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfPartnerItemResult" nillable="true" type="tns:ArrayOfPartnerItemResult"/>
+<xs:complexType name="PartnerItemResult">
+<xs:sequence>
+<xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ItemKey" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ItemSubKey" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PartnerItemResult" nillable="true" type="tns:PartnerItemResult"/>
+<xs:complexType name="AuthorizationFault">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiFault">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="AuthorizationFault" nillable="true" type="tns:AuthorizationFault"/>
+<xs:element name="SavePartners">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Request" nillable="true" type="tns:PartnerData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="PartnerData">
+<xs:sequence>
+<xs:element minOccurs="0" name="City" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CustID" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="GpsE" nillable="true" type="xs:float"/>
+<xs:element minOccurs="0" name="GpsN" nillable="true" type="xs:float"/>
+<xs:element minOccurs="0" name="ID" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="OpeningTime" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PartnerID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PartnerType" type="tns:PartnerType"/>
+<xs:element minOccurs="0" name="Reject" type="xs:int"/>
+<xs:element minOccurs="0" name="Street" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Telephone" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PartnerData" nillable="true" type="tns:PartnerData"/>
+<xs:simpleType name="PartnerType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="ParcelShop">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ZabkaPoint">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="PartnerType" nillable="true" type="tns:PartnerType"/>
+<xs:element name="SavePartnersResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="SavePartnersResult" nillable="true" type="tns:SavePartnersResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="SavePartnersResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:PartnerResultOfPartnerDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="SavePartnersResult" nillable="true" type="tns:SavePartnersResult"/>
+<xs:complexType name="PartnerResultOfPartnerDatapewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="PartnerResultOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="PartnerData" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfPartnerItemResultpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="PartnerResultOfPartnerDatapewOaM6d" nillable="true" type="tns:PartnerResultOfPartnerDatapewOaM6d"/>
+<xs:element name="GetCodCurrency">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetCodCurrencyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetCodCurrencyResult" nillable="true" type="tns:GetCodCurrencyResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetCodCurrencyResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiCodCurrencypewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetCodCurrencyResult" nillable="true" type="tns:GetCodCurrencyResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiCodCurrencypewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiCodCurrency" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiCodCurrency"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiCodCurrencypewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiCodCurrencypewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiCodCurrency">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCodCurrency" nillable="true" type="tns:MyApiCodCurrency"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCodCurrency" nillable="true" type="tns:ArrayOfMyApiCodCurrency"/>
+<xs:complexType name="MyApiCodCurrency">
+<xs:sequence>
+<xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCodCurrency" nillable="true" type="tns:MyApiCodCurrency"/>
+<xs:element name="GetProductCountry">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:ProductCountryFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ProductCountryFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="CustId" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="CouCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Available" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Cod" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="NoHomeCountry" nillable="true" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ProductCountryFilter" nillable="true" type="tns:ProductCountryFilter"/>
+<xs:element name="GetProductCountryResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetProductCountryResult" nillable="true" type="tns:GetProductCountryResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetProductCountryResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiCountryProductspewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetProductCountryResult" nillable="true" type="tns:GetProductCountryResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiCountryProductspewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiCountryProducts" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiCountryProducts"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiCountryProductspewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiCountryProductspewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiCountryProducts">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCountryProducts" nillable="true" type="tns:MyApiCountryProducts"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCountryProducts" nillable="true" type="tns:ArrayOfMyApiCountryProducts"/>
+<xs:complexType name="MyApiCountryProducts">
+<xs:sequence>
+<xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Product" nillable="true" type="tns:MyApiCountryProduct"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCountryProducts" nillable="true" type="tns:MyApiCountryProducts"/>
+<xs:complexType name="MyApiCountryProduct">
+<xs:sequence>
+<xs:element minOccurs="0" name="AllowCOD" type="xs:boolean"/>
+<xs:element minOccurs="0" name="AllowParcelShop" type="xs:boolean"/>
+<xs:element minOccurs="0" name="DefaultCust" type="xs:boolean"/>
+<xs:element minOccurs="0" name="DefaultProduct" type="xs:boolean"/>
+<xs:element minOccurs="0" name="DefaultStd" type="xs:boolean"/>
+<xs:element minOccurs="0" name="DefaultSub" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Export" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Import" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IsSupreme" type="xs:boolean"/>
+<xs:element minOccurs="0" name="PptId" type="xs:int"/>
+<xs:element minOccurs="0" name="ProductCode" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCountryProduct" nillable="true" type="tns:MyApiCountryProduct"/>
+<xs:element name="SaveProductTransports">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="CountryProducts" nillable="true" type="tns:ArrayOfMyApiCountryProducts"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SaveProductTransportsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="SaveProductTransportsResult" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetPackProducts">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:PackProductFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="PackProductFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="LastUpdate" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PackProductFilter" nillable="true" type="tns:PackProductFilter"/>
+<xs:element name="GetPackProductsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetPackProductsResult" nillable="true" type="tns:GetPackProductsResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetPackProductsResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiProductpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetPackProductsResult" nillable="true" type="tns:GetPackProductsResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiProductpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiProduct" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiProduct"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiProductpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiProductpewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiProduct">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiProduct" nillable="true" type="tns:MyApiProduct"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiProduct" nillable="true" type="tns:ArrayOfMyApiProduct"/>
+<xs:complexType name="MyApiProduct">
+<xs:sequence>
+<xs:element minOccurs="0" name="Code" type="xs:int"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Reject" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IsCOD" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IsCODOf" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Import" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Export" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Package" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Sprint" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Private" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Business" type="xs:boolean"/>
+<xs:element minOccurs="0" name="Express" type="xs:boolean"/>
+<xs:element minOccurs="0" name="PackNumberType" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Deliv2PS" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiProduct" nillable="true" type="tns:MyApiProduct"/>
+<xs:element name="GetPackNumberRowTypes">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Filter" nillable="true" type="tns:PackNumberRowTypeFilter"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="PackNumberRowTypeFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="LastUpdate" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="PackNumberRowTypeFilter" nillable="true" type="tns:PackNumberRowTypeFilter"/>
+<xs:element name="GetPackNumberRowTypesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetPackNumberRowTypesResult" nillable="true" type="tns:GetPackNumberRowTypesResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetPackNumberRowTypesResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfMyApiPackNumberRowTypepewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetPackNumberRowTypesResult" nillable="true" type="tns:GetPackNumberRowTypesResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfMyApiPackNumberRowTypepewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfMyApiPackNumberRowType" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfMyApiPackNumberRowType"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfMyApiPackNumberRowTypepewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfMyApiPackNumberRowTypepewOaM6d"/>
+<xs:complexType name="ArrayOfMyApiPackNumberRowType">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiPackNumberRowType" nillable="true" type="tns:MyApiPackNumberRowType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiPackNumberRowType" nillable="true" type="tns:ArrayOfMyApiPackNumberRowType"/>
+<xs:complexType name="MyApiPackNumberRowType">
+<xs:sequence>
+<xs:element minOccurs="0" name="PckNRTID" type="xs:int"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Reject" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackNumberRowType" nillable="true" type="tns:MyApiPackNumberRowType"/>
+<xs:element name="GetNumberRange">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="NumberRanges" nillable="true" type="tns:ArrayOfNumberRangeRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="ArrayOfNumberRangeRequest">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="NumberRangeRequest" nillable="true" type="tns:NumberRangeRequest"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfNumberRangeRequest" nillable="true" type="tns:ArrayOfNumberRangeRequest"/>
+<xs:complexType name="NumberRangeRequest">
+<xs:sequence>
+<xs:element name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element name="Quantity" type="xs:int"/>
+<xs:element minOccurs="0" name="DocumentBack" nillable="true" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IntegrId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="NumberRangeRequest" nillable="true" type="tns:NumberRangeRequest"/>
+<xs:element name="GetNumberRangeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetNumberRangeResult" nillable="true" type="tns:GetNumberRangeResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetNumberRangeResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfNumberRangepewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetNumberRangeResult" nillable="true" type="tns:GetNumberRangeResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfNumberRangepewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfNumberRange" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfNumberRange"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfNumberRangepewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfNumberRangepewOaM6d"/>
+<xs:complexType name="ArrayOfNumberRange">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="NumberRange" nillable="true" type="tns:NumberRange"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfNumberRange" nillable="true" type="tns:ArrayOfNumberRange"/>
+<xs:complexType name="NumberRange">
+<xs:sequence>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Name" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Quantity" type="xs:int"/>
+<xs:element minOccurs="0" name="From" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="To" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ErrorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="NumberRange" nillable="true" type="tns:NumberRange"/>
+<xs:element name="GetFreeRangeInfo">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="PptId" nillable="true" type="xs:string"/>
+<xs:element minOccurs="1" name="integrId" nillable="true" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetFreeRangeInfoResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetFreeRangeInfoResult" nillable="true" type="tns:GetFreeRangeInfoResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetFreeRangeInfoResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfGetFreeNumberRangesDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetFreeRangeInfoResult" nillable="true" type="tns:GetFreeRangeInfoResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfGetFreeNumberRangesDatapewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfGetFreeNumberRangesData" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfGetFreeNumberRangesData"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfGetFreeNumberRangesDatapewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfGetFreeNumberRangesDatapewOaM6d"/>
+<xs:complexType name="ArrayOfGetFreeNumberRangesData">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="GetFreeNumberRangesData" nillable="true" type="tns:GetFreeNumberRangesData"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfGetFreeNumberRangesData" nillable="true" type="tns:ArrayOfGetFreeNumberRangesData"/>
+<xs:complexType name="GetFreeNumberRangesData">
+<xs:sequence>
+<xs:element minOccurs="0" name="PackProductName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PackProductType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="DocumentBack" type="xs:boolean"/>
+<xs:element minOccurs="0" name="BackPackNumber" type="xs:boolean"/>
+<xs:element minOccurs="0" name="IntegrId" nillable="true" type="xs:int"/>
+<xs:element minOccurs="0" name="Quantity" nillable="true" type="tns:Quantity"/>
+<xs:element minOccurs="0" name="CreatedType" nillable="true" type="tns:CreatedType"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="GetFreeNumberRangesData" nillable="true" type="tns:GetFreeNumberRangesData"/>
+<xs:complexType name="Quantity">
+<xs:sequence>
+<xs:element minOccurs="0" name="From" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="To" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Available" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Quantity" nillable="true" type="tns:Quantity"/>
+<xs:complexType name="CreatedType">
+<xs:sequence>
+<xs:element minOccurs="0" name="CreatedByName" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CreatedType" nillable="true" type="tns:CreatedType"/>
+<xs:element name="CancelOrder">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Cancel" nillable="true" type="tns:MyApiCancelOrder"/>
+<xs:element minOccurs="1" name="OrderData" nillable="true" type="tns:MyApiCancelOrderData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="MyApiCancelOrder">
+<xs:sequence>
+<xs:element name="CustRef" nillable="true" type="xs:string"/>
+<xs:element name="OrdRefId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCancelOrder" nillable="true" type="tns:MyApiCancelOrder"/>
+<xs:complexType name="MyApiCancelOrderData">
+<xs:sequence>
+<xs:element minOccurs="0" name="Note" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCancelOrderData" nillable="true" type="tns:MyApiCancelOrderData"/>
+<xs:element name="CancelOrderResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CancelOrderResult" nillable="true" type="tns:CancelOrderResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CancelOrderResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfResultDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CancelOrderResult" nillable="true" type="tns:CancelOrderResult"/>
+<xs:complexType name="MyApiResultBaseOfResultDatapewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ResultData" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ResultData"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfResultDatapewOaM6d" nillable="true" type="tns:MyApiResultBaseOfResultDatapewOaM6d"/>
+<xs:complexType name="ResultData">
+<xs:sequence>
+<xs:element minOccurs="0" name="Code" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Message" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResultData" nillable="true" type="tns:ResultData"/>
+<xs:element name="CancelPackage">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Cancel" nillable="true" type="tns:MyApiCancelPackage"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="MyApiCancelPackage">
+<xs:sequence>
+<xs:element name="PackNumber" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCancelPackage" nillable="true" type="tns:MyApiCancelPackage"/>
+<xs:element name="CancelPackageResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="CancelPackageResult" nillable="true" type="tns:CancelPackageResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="CancelPackageResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfResultDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="CancelPackageResult" nillable="true" type="tns:CancelPackageResult"/>
+<xs:element name="UpdatePackage">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="Update" nillable="true" type="tns:MyApiUpdatePackage"/>
+<xs:element minOccurs="1" name="UpdateData" nillable="true" type="tns:MyApiUpdatePackageData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="MyApiUpdatePackage">
+<xs:sequence>
+<xs:element name="PackNumber" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiUpdatePackage" nillable="true" type="tns:MyApiUpdatePackage"/>
+<xs:complexType name="MyApiUpdatePackageData">
+<xs:sequence>
+<xs:element name="Recipient" nillable="true" type="tns:MyApiPackageUpdateRecipient"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiUpdatePackageData" nillable="true" type="tns:MyApiUpdatePackageData"/>
+<xs:complexType name="MyApiPackageUpdateRecipient">
+<xs:sequence>
+<xs:element minOccurs="0" name="Contact" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Email" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiPackageUpdateRecipient" nillable="true" type="tns:MyApiPackageUpdateRecipient"/>
+<xs:element name="UpdatePackageResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="UpdatePackageResult" nillable="true" type="tns:UpdatePackageResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="UpdatePackageResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfResultDatapewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="UpdatePackageResult" nillable="true" type="tns:UpdatePackageResult"/>
+<xs:element name="GetCustomerInfo">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="Auth" nillable="true" type="tns:AuthenticationData"/>
+<xs:element minOccurs="1" name="IntegrId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetCustomerInfoResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetCustomerInfoResult" nillable="true" type="tns:GetCustomerInfoResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetCustomerInfoResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfMyApiCustomerInfopewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetCustomerInfoResult" nillable="true" type="tns:GetCustomerInfoResult"/>
+<xs:complexType name="MyApiResultBaseOfMyApiCustomerInfopewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="MyApiCustomerInfo" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:MyApiCustomerInfo"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfMyApiCustomerInfopewOaM6d" nillable="true" type="tns:MyApiResultBaseOfMyApiCustomerInfopewOaM6d"/>
+<xs:complexType name="MyApiCustomerInfo">
+<xs:sequence>
+<xs:element minOccurs="0" name="Accounts" nillable="true" type="tns:ArrayOfMyApiCustomerAccount"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCustomerInfo" nillable="true" type="tns:MyApiCustomerInfo"/>
+<xs:complexType name="ArrayOfMyApiCustomerAccount">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="MyApiCustomerAccount" nillable="true" type="tns:MyApiCustomerAccount"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfMyApiCustomerAccount" nillable="true" type="tns:ArrayOfMyApiCustomerAccount"/>
+<xs:complexType name="MyApiCustomerAccount">
+<xs:sequence>
+<xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Country" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Currency" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Swift" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="MyApiCustomerAccount" nillable="true" type="tns:MyApiCustomerAccount"/>
+<xs:element name="GetVersionInformation">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="1" name="language" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetVersionInformationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="GetVersionInformationResult" nillable="true" type="tns:GetVersionInformationResult"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="GetVersionInformationResult">
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseOfArrayOfVersionInformationpewOaM6d">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="GetVersionInformationResult" nillable="true" type="tns:GetVersionInformationResult"/>
+<xs:complexType name="MyApiResultBaseOfArrayOfVersionInformationpewOaM6d">
+<xs:annotation>
+<xs:appinfo>
+<GenericType xmlns="http://schemas.microsoft.com/2003/10/Serialization/" Name="MyApiResultBaseOf{0}{#}" Namespace="http://myapi.ppl.cz/v1">
+<GenericParameter Name="ArrayOfVersionInformation" Namespace="http://myapi.ppl.cz/v1"/>
+</GenericType>
+</xs:appinfo>
+</xs:annotation>
+<xs:complexContent mixed="false">
+<xs:extension base="tns:MyApiResultBaseVoid">
+<xs:sequence>
+<xs:element name="ResultData" nillable="true" type="tns:ArrayOfVersionInformation"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:element name="MyApiResultBaseOfArrayOfVersionInformationpewOaM6d" nillable="true" type="tns:MyApiResultBaseOfArrayOfVersionInformationpewOaM6d"/>
+<xs:complexType name="ArrayOfVersionInformation">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="VersionInformation" nillable="true" type="tns:VersionInformation"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfVersionInformation" nillable="true" type="tns:ArrayOfVersionInformation"/>
+<xs:complexType name="VersionInformation">
+<xs:sequence>
+<xs:element minOccurs="0" name="Language" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Title" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="InformationType" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Priority" type="xs:int"/>
+<xs:element minOccurs="0" name="Version" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="ValidFrom" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="ValidTo" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Created" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="VersionInformation" nillable="true" type="tns:VersionInformation"/>
+<xs:element name="IsHealtly">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="IsHealtlyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="IsHealtlyResult" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/">
+<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+<xs:element name="byte" nillable="true" type="xs:byte"/>
+<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+<xs:element name="double" nillable="true" type="xs:double"/>
+<xs:element name="float" nillable="true" type="xs:float"/>
+<xs:element name="int" nillable="true" type="xs:int"/>
+<xs:element name="long" nillable="true" type="xs:long"/>
+<xs:element name="QName" nillable="true" type="xs:QName"/>
+<xs:element name="short" nillable="true" type="xs:short"/>
+<xs:element name="string" nillable="true" type="xs:string"/>
+<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+<xs:element name="char" nillable="true" type="tns:char"/>
+<xs:simpleType name="char">
+<xs:restriction base="xs:int"/>
+</xs:simpleType>
+<xs:element name="duration" nillable="true" type="tns:duration"/>
+<xs:simpleType name="duration">
+<xs:restriction base="xs:duration">
+<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="guid" nillable="true" type="tns:guid"/>
+<xs:simpleType name="guid">
+<xs:restriction base="xs:string">
+<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:attribute name="FactoryType" type="xs:QName"/>
+<xs:attribute name="Id" type="xs:ID"/>
+<xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+<xs:complexType name="ArrayOfstring">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+<xs:complexType name="ArrayOfint">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Elinkx.EpsNet.API.MyAPI.Model.AccessPoint" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Elinkx.EpsNet.API.MyAPI.Model.AccessPoint">
+<xs:simpleType name="AccessPointType">
+<xs:restriction base="xs:string">
+<xs:enumeration value="None"/>
+<xs:enumeration value="ParcelShop"/>
+<xs:enumeration value="ZabkaPoint"/>
+<xs:enumeration value="ParcelBox"/>
+<xs:enumeration value="ParcelShop1"/>
+<xs:enumeration value="ZabkaPoint2"/>
+<xs:enumeration value="Pbox3"/>
+<xs:enumeration value="AlzaBox"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="AccessPointType" nillable="true" type="tns:AccessPointType"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="IMyApi2_CreatePackages_InputMessage">
+<wsdl:part name="parameters" element="tns:CreatePackages"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackages_OutputMessage">
+<wsdl:part name="parameters" element="tns:CreatePackagesResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackages_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackages_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackages_ValidationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:ValidationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackageLabel_InputMessage">
+<wsdl:part name="parameters" element="tns:CreatePackageLabel"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackageLabel_OutputMessage">
+<wsdl:part name="parameters" element="tns:CreatePackageLabelResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackageLabel_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackageLabel_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePackageLabel_ValidationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:ValidationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCplResult_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCplResult"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCplResult_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCplResultResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCplResult_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCplResult_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCplResult_ValidationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:ValidationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetOrders_InputMessage">
+<wsdl:part name="parameters" element="tns:GetOrders"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetOrders_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetOrdersResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetOrders_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetOrders_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackages_InputMessage">
+<wsdl:part name="parameters" element="tns:GetPackages"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackages_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetPackagesResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackages_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackages_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Login_InputMessage">
+<wsdl:part name="parameters" element="tns:Login"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Login_OutputMessage">
+<wsdl:part name="parameters" element="tns:LoginResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Login_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Login_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreateOrders_InputMessage">
+<wsdl:part name="parameters" element="tns:CreateOrders"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreateOrders_OutputMessage">
+<wsdl:part name="parameters" element="tns:CreateOrdersResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreateOrders_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreateOrders_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePickupOrders_InputMessage">
+<wsdl:part name="parameters" element="tns:CreatePickupOrders"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePickupOrders_OutputMessage">
+<wsdl:part name="parameters" element="tns:CreatePickupOrdersResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePickupOrders_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CreatePickupOrders_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCitiesRouting_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCitiesRouting"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCitiesRouting_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCitiesRoutingResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCitiesRouting_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCitiesRouting_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetParcelShops_InputMessage">
+<wsdl:part name="parameters" element="tns:GetParcelShops"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetParcelShops_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetParcelShopsResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetParcelShops_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Version_InputMessage">
+<wsdl:part name="parameters" element="tns:Version"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Version_OutputMessage">
+<wsdl:part name="parameters" element="tns:VersionResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_Version_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_PartnerSaveStatuses_InputMessage">
+<wsdl:part name="parameters" element="tns:PartnerSaveStatuses"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_PartnerSaveStatuses_OutputMessage">
+<wsdl:part name="parameters" element="tns:PartnerSaveStatusesResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_PartnerSaveStatuses_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_PartnerSaveStatuses_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_PartnerSaveStatuses_AuthorizationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthorizationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SavePartners_InputMessage">
+<wsdl:part name="parameters" element="tns:SavePartners"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SavePartners_OutputMessage">
+<wsdl:part name="parameters" element="tns:SavePartnersResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SavePartners_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SavePartners_AuthenticationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthenticationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SavePartners_AuthorizationFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:AuthorizationFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCodCurrency_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCodCurrency"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCodCurrency_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCodCurrencyResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCodCurrency_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetProductCountry_InputMessage">
+<wsdl:part name="parameters" element="tns:GetProductCountry"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetProductCountry_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetProductCountryResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetProductCountry_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SaveProductTransports_InputMessage">
+<wsdl:part name="parameters" element="tns:SaveProductTransports"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SaveProductTransports_OutputMessage">
+<wsdl:part name="parameters" element="tns:SaveProductTransportsResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_SaveProductTransports_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackProducts_InputMessage">
+<wsdl:part name="parameters" element="tns:GetPackProducts"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackProducts_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetPackProductsResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackProducts_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackNumberRowTypes_InputMessage">
+<wsdl:part name="parameters" element="tns:GetPackNumberRowTypes"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackNumberRowTypes_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetPackNumberRowTypesResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetPackNumberRowTypes_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetNumberRange_InputMessage">
+<wsdl:part name="parameters" element="tns:GetNumberRange"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetNumberRange_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetNumberRangeResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetNumberRange_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetFreeRangeInfo_InputMessage">
+<wsdl:part name="parameters" element="tns:GetFreeRangeInfo"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetFreeRangeInfo_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetFreeRangeInfoResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetFreeRangeInfo_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelOrder_InputMessage">
+<wsdl:part name="parameters" element="tns:CancelOrder"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelOrder_OutputMessage">
+<wsdl:part name="parameters" element="tns:CancelOrderResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelOrder_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelPackage_InputMessage">
+<wsdl:part name="parameters" element="tns:CancelPackage"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelPackage_OutputMessage">
+<wsdl:part name="parameters" element="tns:CancelPackageResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_CancelPackage_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_UpdatePackage_InputMessage">
+<wsdl:part name="parameters" element="tns:UpdatePackage"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_UpdatePackage_OutputMessage">
+<wsdl:part name="parameters" element="tns:UpdatePackageResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_UpdatePackage_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCustomerInfo_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCustomerInfo"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCustomerInfo_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCustomerInfoResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetCustomerInfo_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetVersionInformation_InputMessage">
+<wsdl:part name="parameters" element="tns:GetVersionInformation"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetVersionInformation_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetVersionInformationResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_GetVersionInformation_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_IsHealtly_InputMessage">
+<wsdl:part name="parameters" element="tns:IsHealtly"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_IsHealtly_OutputMessage">
+<wsdl:part name="parameters" element="tns:IsHealtlyResponse"/>
+</wsdl:message>
+<wsdl:message name="IMyApi2_IsHealtly_GeneralFaultFault_FaultMessage">
+<wsdl:part name="detail" element="tns:GeneralFault"/>
+</wsdl:message>
+<wsdl:portType name="IMyApi2">
+<wsdl:operation name="CreatePackages">
+<wsdl:documentation>Vloží nové zásilky pro import do systému.</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePackages" message="tns:IMyApi2_CreatePackages_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePackagesResponse" message="tns:IMyApi2_CreatePackages_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CreatePackages_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_CreatePackages_AuthenticationFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/ValidationFault" name="ValidationFaultFault" message="tns:IMyApi2_CreatePackages_ValidationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CreatePackageLabel">
+<wsdl:documentation>Vloží nové zásilky pro import do systému</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePackageLabel" message="tns:IMyApi2_CreatePackageLabel_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePackageLabelResponse" message="tns:IMyApi2_CreatePackageLabel_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CreatePackageLabel_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_CreatePackageLabel_AuthenticationFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/ValidationFault" name="ValidationFaultFault" message="tns:IMyApi2_CreatePackageLabel_ValidationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCplResult">
+<wsdl:documentation>Stav zpracovani requestu</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCplResult" message="tns:IMyApi2_GetCplResult_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCplResultResponse" message="tns:IMyApi2_GetCplResult_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetCplResult_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_GetCplResult_AuthenticationFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/ValidationFault" name="ValidationFaultFault" message="tns:IMyApi2_GetCplResult_ValidationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetOrders">
+<wsdl:documentation>Vrátí seznam objednávek dle zadaného filtru</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetOrders" message="tns:IMyApi2_GetOrders_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetOrdersResponse" message="tns:IMyApi2_GetOrders_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetOrders_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_GetOrders_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetPackages">
+<wsdl:documentation>Vrátí seznam zásilek dle zadaného filtru</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackages" message="tns:IMyApi2_GetPackages_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackagesResponse" message="tns:IMyApi2_GetPackages_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetPackages_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_GetPackages_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="Login">
+<wsdl:documentation>Vrátí autentikační ticket</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/Login" message="tns:IMyApi2_Login_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/LoginResponse" message="tns:IMyApi2_Login_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_Login_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_Login_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CreateOrders">
+<wsdl:documentation>Vytvoří objednávky přepravy</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreateOrders" message="tns:IMyApi2_CreateOrders_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreateOrdersResponse" message="tns:IMyApi2_CreateOrders_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CreateOrders_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_CreateOrders_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CreatePickupOrders">
+<wsdl:documentation>Vytvoří objednávky svozu</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePickupOrders" message="tns:IMyApi2_CreatePickupOrders_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CreatePickupOrdersResponse" message="tns:IMyApi2_CreatePickupOrders_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CreatePickupOrders_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_CreatePickupOrders_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCitiesRouting">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCitiesRouting" message="tns:IMyApi2_GetCitiesRouting_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCitiesRoutingResponse" message="tns:IMyApi2_GetCitiesRouting_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetCitiesRouting_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_GetCitiesRouting_AuthenticationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetParcelShops">
+<wsdl:documentation>Vrátí seznam ParcelShopů</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetParcelShops" message="tns:IMyApi2_GetParcelShops_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetParcelShopsResponse" message="tns:IMyApi2_GetParcelShops_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetParcelShops_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="Version">
+<wsdl:documentation>Verze služby</wsdl:documentation>
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/Version" message="tns:IMyApi2_Version_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/VersionResponse" message="tns:IMyApi2_Version_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_Version_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PartnerSaveStatuses">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/PartnerSaveStatuses" message="tns:IMyApi2_PartnerSaveStatuses_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/PartnerSaveStatusesResponse" message="tns:IMyApi2_PartnerSaveStatuses_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_PartnerSaveStatuses_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_PartnerSaveStatuses_AuthenticationFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthorizationFault" name="AuthorizationFaultFault" message="tns:IMyApi2_PartnerSaveStatuses_AuthorizationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SavePartners">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/SavePartners" message="tns:IMyApi2_SavePartners_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/SavePartnersResponse" message="tns:IMyApi2_SavePartners_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_SavePartners_GeneralFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthenticationFault" name="AuthenticationFaultFault" message="tns:IMyApi2_SavePartners_AuthenticationFaultFault_FaultMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/AuthorizationFault" name="AuthorizationFaultFault" message="tns:IMyApi2_SavePartners_AuthorizationFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCodCurrency">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCodCurrency" message="tns:IMyApi2_GetCodCurrency_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCodCurrencyResponse" message="tns:IMyApi2_GetCodCurrency_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetCodCurrency_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetProductCountry">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetProductCountry" message="tns:IMyApi2_GetProductCountry_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetProductCountryResponse" message="tns:IMyApi2_GetProductCountry_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetProductCountry_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SaveProductTransports">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/SaveProductTransports" message="tns:IMyApi2_SaveProductTransports_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/SaveProductTransportsResponse" message="tns:IMyApi2_SaveProductTransports_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_SaveProductTransports_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetPackProducts">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackProducts" message="tns:IMyApi2_GetPackProducts_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackProductsResponse" message="tns:IMyApi2_GetPackProducts_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetPackProducts_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetPackNumberRowTypes">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackNumberRowTypes" message="tns:IMyApi2_GetPackNumberRowTypes_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetPackNumberRowTypesResponse" message="tns:IMyApi2_GetPackNumberRowTypes_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetPackNumberRowTypes_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetNumberRange">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetNumberRange" message="tns:IMyApi2_GetNumberRange_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetNumberRangeResponse" message="tns:IMyApi2_GetNumberRange_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetNumberRange_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetFreeRangeInfo">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetFreeRangeInfo" message="tns:IMyApi2_GetFreeRangeInfo_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetFreeRangeInfoResponse" message="tns:IMyApi2_GetFreeRangeInfo_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetFreeRangeInfo_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CancelOrder">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CancelOrder" message="tns:IMyApi2_CancelOrder_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CancelOrderResponse" message="tns:IMyApi2_CancelOrder_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CancelOrder_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CancelPackage">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CancelPackage" message="tns:IMyApi2_CancelPackage_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/CancelPackageResponse" message="tns:IMyApi2_CancelPackage_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_CancelPackage_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="UpdatePackage">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/UpdatePackage" message="tns:IMyApi2_UpdatePackage_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/UpdatePackageResponse" message="tns:IMyApi2_UpdatePackage_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_UpdatePackage_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCustomerInfo">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCustomerInfo" message="tns:IMyApi2_GetCustomerInfo_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetCustomerInfoResponse" message="tns:IMyApi2_GetCustomerInfo_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetCustomerInfo_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetVersionInformation">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetVersionInformation" message="tns:IMyApi2_GetVersionInformation_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/GetVersionInformationResponse" message="tns:IMyApi2_GetVersionInformation_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_GetVersionInformation_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+<wsdl:operation name="IsHealtly">
+<wsdl:input wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/IsHealtly" message="tns:IMyApi2_IsHealtly_InputMessage"/>
+<wsdl:output wsaw:Action="http://myapi.ppl.cz/v1/IMyApi2/IsHealtlyResponse" message="tns:IMyApi2_IsHealtly_OutputMessage"/>
+<wsdl:fault wsaw:Action="http://myapi.ppl.cz/v1/GeneralFault" name="GeneralFaultFault" message="tns:IMyApi2_IsHealtly_GeneralFaultFault_FaultMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BasicHttpBinding_IMyApi2" type="tns:IMyApi2">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="CreatePackages">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CreatePackages" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="ValidationFaultFault">
+<soap:fault use="literal" name="ValidationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CreatePackageLabel">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CreatePackageLabel" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="ValidationFaultFault">
+<soap:fault use="literal" name="ValidationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetCplResult">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetCplResult" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="ValidationFaultFault">
+<soap:fault use="literal" name="ValidationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetOrders">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetOrders" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetPackages">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetPackages" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="Login">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/Login" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CreateOrders">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CreateOrders" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CreatePickupOrders">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CreatePickupOrders" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetCitiesRouting">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetCitiesRouting" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetParcelShops">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetParcelShops" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="Version">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/Version" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="PartnerSaveStatuses">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/PartnerSaveStatuses" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthorizationFaultFault">
+<soap:fault use="literal" name="AuthorizationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="SavePartners">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/SavePartners" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthenticationFaultFault">
+<soap:fault use="literal" name="AuthenticationFaultFault" namespace=""/>
+</wsdl:fault>
+<wsdl:fault name="AuthorizationFaultFault">
+<soap:fault use="literal" name="AuthorizationFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetCodCurrency">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetCodCurrency" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetProductCountry">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetProductCountry" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="SaveProductTransports">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/SaveProductTransports" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetPackProducts">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetPackProducts" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetPackNumberRowTypes">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetPackNumberRowTypes" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetNumberRange">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetNumberRange" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetFreeRangeInfo">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetFreeRangeInfo" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CancelOrder">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CancelOrder" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="CancelPackage">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/CancelPackage" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="UpdatePackage">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/UpdatePackage" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetCustomerInfo">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetCustomerInfo" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="GetVersionInformation">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/GetVersionInformation" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="IsHealtly">
+<soap:operation soapAction="http://myapi.ppl.cz/v1/IMyApi2/IsHealtly" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+<wsdl:fault name="GeneralFaultFault">
+<soap:fault use="literal" name="GeneralFaultFault" namespace=""/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="MyApiService">
+<wsdl:port name="BasicHttpBinding_IMyApi2" binding="tns:BasicHttpBinding_IMyApi2">
+<soap:address location="https://myapi.ppl.cz/MyAPI.svc"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
