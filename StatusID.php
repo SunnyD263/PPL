@@ -1,7 +1,7 @@
 <?php
 require 'fileWork.php';
 require "SQLconn.php";
-set_time_limit(900);
+set_time_limit(1800);
 $startTime = microtime(true);
 $RowHunt = 0;
 $CloseParcel = 0;
@@ -90,51 +90,30 @@ if($Counter!==0)
             {
             foreach($response as $key)
                 {
-                $ZIP = $key->recipient->zipCode;
                 $TaT = $key->trackAndTrace->events;
-                if (isset($key->recipient->name2))
-                    {
-                    $Recepient=$key->recipient->name2;
-                    }
-                else
-                    {
-                    $Recepient=$key->recipient->name;
-                    }
-                $Reference = $key->externalNumbers[0]->externalNumber;
                 foreach($TaT as $event)
                     {
                         $ScanCode = $event->statusId;
-                        $DateTime =  date("Y-m-d H:i:s", strtotime($event->eventDate));
-
-                        $SQL=  "SELECT count([PARCELNO]) as Counter FROM [DPD_DB].[dbo].[PMIdb] where ([PARCELNO] = :parcelno) and ([EVENT_DATE_TIME] = :DaTi)";
-                        $params = array(':parcelno' => $ParcelID,  ':DaTi' => $DateTime );
+                        if (isset($event->code))
+                        {
+                        $Code = $event->code;
+                        $Phase = $event->phase;
+                        $Group = $event->group;
+                        }
+                        $Name = $event->name;
+                        $SQL=  "SELECT count([IdStatus_code]) as Counter FROM [DPD_DB].[dbo].[PPLsc] where ([IdStatus_code] = :IdStatus_code)";
+                        $params = array('IdStatus_code' => $ScanCode);
                         $CounterResult = $Connection->select($SQL,$params );
                         $Counter= $CounterResult['rows'][0]['Counter'];
-
                     //checking every parcelnum row in Db => $Counter == 0 then insert new row
                     if ($Counter == 0)
                         {
-                        if($ScanCode  == 400) //insert parcel delivery name
-                            {
-                            $data = array('PARCELNO' => $ParcelID, 'SCAN_CODE' => $ScanCode,'Service' => 'E-COM','EVENT_DATE_TIME' => $DateTime, 'ZIP' => $ZIP,'REFERENCE' => $Reference,'Customer' => $Recepient,'Source' => "PPL", 'KN' => 'Import');
-                            $Connection->insert('PMIdb', $data);
-                            $RowInsert++;
-                            }
-                        else 
-                            {
                             //insert rows to DB
-                            $data = array('PARCELNO' => $ParcelID, 'SCAN_CODE' => $ScanCode,'Service' => 'E-COM', 'EVENT_DATE_TIME' => $DateTime, 'ZIP' => $ZIP,'REFERENCE' => $Reference,'Source' => "PPL", 'KN' => 'Import');
-                            $Connection->insert('PMIdb', $data);
+                            $data = array( 'IdStatus_code' => $ScanCode, 'Status_code_CZ' => $Name, 'Status_code_EN' => $Code,'Phase' => $Phase,'Skupina' => $Group);
+                            $Connection->insert('PPLsc', $data);
                             $RowInsert++;
-                            }
-                            //Set field Update to 1 => next round dont check this palletnum
-                        If ($ScanCode  == 450 or $ScanCode  == 453)
-                            {
-                                $SQL=  "UPDATE [dbo].[PD2] SET [Update] = 1 where ([PARCELNO] = :PARCELNO)";
-                                $params = array(':PARCELNO' => $ParcelID);  
-                                $upd = $Connection->update($SQL,$params);
-                                $CloseParcel++;
-                            }        
+                            
+       
                         }
                     }
                 }
